@@ -1,3 +1,5 @@
+const { lte } = require("semver");
+
 const MORSE_TABLE = {
     '.-':     'a',
     '-...':   'b',
@@ -37,8 +39,29 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
 function decode(expr) {
-    // write your solution here
+    console.log('RLY NIGGA');
+    let res = '';
+    expr.split('**********').forEach(element => {
+        console.log(element.length);
+        for (var j = 0; j + 10 <= element.length; j += 10) {
+            var elemPart = element.slice(j, j + 10);
+            elemPart = parseInt(elemPart, 10).toString();
+            var morseLetter = '';
+            for (var i = 0; i + 2 <= elemPart.length; i += 2) {
+                var tmp = elemPart.slice(i, i + 2);
+                if (tmp == '10') morseLetter += '.';
+                if (tmp == '11') morseLetter += '-';
+            }
+            res += MORSE_TABLE[morseLetter];
+        }
+        res += ' ';
+    });
+    return res.trim();
 }
 
 module.exports = {

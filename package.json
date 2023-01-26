@@ -4,7 +4,7 @@
   "description": "Morse code decoder",
   "main": "test.js",
   "scripts": {
-    "test": "mocha test.js",
+    "test": "mocha test.js -b",
     "postinstall": "node postinstall.js"
   },
   "engines": {
